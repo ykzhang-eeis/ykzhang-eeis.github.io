@@ -60,7 +60,7 @@
 
 为了得到更好的时序上下文表示，本文同时利用了**实例级别**（instance-wise）和**时间维度**（temporal dimensions）的对比损失来编码时间序列分布，融合后的损失函数应用于层次对比模型中的所有粒度级别
 
-**时间维度的对比损失函数**：将来自输入时间序列两个视图的相同时间戳的表示视为正例，而来自相同时间序列不同时间戳的表示视为负例，$$i$$是输入的时间序列的索引，$$t$$是时间戳， $$r_{i,t}$$ 和$$r_{i,t}^{\prime}$$ 是来自 $$x_i$$的两种不同增强的相同时间戳 $$t$$的表示，时间维度的损失函数可以表示为
+**时间维度的对比损失函数**：将来自输入时间序列两个视图的相同时间戳的表示视为正例，而来自相同时间序列不同时间戳的表示视为负例，$$i$$是输入的时间序列的索引，$$t$$是时间戳， $$r_{i,t}$$ 和$$r_{i,t}^{\prime}$$ 是来自 $x_i$的两种不同增强的相同时间戳 $$t$$的表示，时间维度的损失函数可以表示为
 
 $$\ell_{temp}^{(i,t)}=-\mathrm{log}\frac{\exp(r_{i,t}\cdot r_{i,t}^{\prime})}{\sum_{t^{\prime}\in\Omega}\left(\exp(r_{i,t}\cdot r_{i,t^{\prime}}^{\prime})+\mathbb{1}_{[t\neq t^{\prime}]}\exp(r_{i,t}\cdot r_{i,t^{\prime}})\right)}$$
 
@@ -78,3 +78,14 @@ $$\mathcal{L}_{dual}=\frac1{NT}\sum_i\sum_t\left(\ell_{temp}^{(i,t)}+\ell_{inst}
 
 [^1]:Tonekaboni, S.; Eytan, D.; and Goldenberg, A. 2021. Unsupervised Representation Learning for Time Series with Temporal Neighborhood Coding. In International Conference on Learning Representations.
 [^2]:Franceschi, J.-Y.; Dieuleveut, A.; and Jaggi, M. 2019. Unsupervised Scalable Representation Learning for Multivariate Time Series. In Advances in Neural Information Processing Systems, volume 32. Curran Associates, Inc.
+
+对于示例个数为$N$ 的时间序列集合$X=\{x_1,x_2,\cdots,x_N\}$,我们的目标是学习到一个非线性的特征提取函数 $f_{\theta}$ ,可以将每一个$x_i$ 映射成$r_i$,输入$x_i$的维度是$T\times F$,$T$是序列长度,$F$是特征维度,即
+ $x_i=\{x_{i,1},x_{i,2},\cdots,x_{i,T}\}$,其中$x_{i,t}\in\mathbb{R}^F$。经变换后得到$r_i=\{r_{i,1},r_{i,2},\cdots,r_{i,T}\}$,其中$r_{i,t}\in\mathbb{R}^K$,,$K$
+ 是变换后的特征维度$a$
+ 编码器 $f_{\theta}$ 由三部分组成: 1. 一个输入的映射层 (全连接层) , 将时间戳为 $t$ 的观测变量 $x_{i,t}$ 映射到高维空间的隐变量 $z_{i,t}$
+
+ 2. 一个时间戳掩码和随机裁剪模块,对隐变量 $z_i=\{z_{i,t}\}$ 进行掩码,以生成一个增强的上下文视图。其中掩码
+
+$m\in\{0,1\}^T$,从采样概率$p=0.5$ 的伯努利分布中独立采样。对于任意的时间序列输入$x_i\in\mathbb{R}^{T\times F}$( TS2Vec 随机采样两个重叠的时间窗口$[a_1,b_1],[a_2,b_2]$,满足$0<a_1\leq a_2\leq b_1\leq b_2\leq T$ ,所以重叠段$[a_2,b_1]$ 的上下文表示应该保持一致
+
+3. 一个具有十个 residual blocks 的 dilated CNN (空洞卷积) 模块, 对于第 $l$ 层的网络块来说, 空洞参数是 2$^l$
