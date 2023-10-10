@@ -64,7 +64,7 @@
 **时间维度的对比损失函数**：将来自输入时间序列两个视图的相同时间戳的表示视为正例，而来自相同时间序列不同时间戳的表示视为负例，$i$是输入的时间序列的索引，$t$是时间戳，$r_{i,t}$ 和$r_{i,t}^{\prime}$是来自$x_i$的两种不同增强的相同时间戳$t$的表示，时间维度的损失函数可以表示为
 
 $$
-\ell_{temp}^{(i,t)}=-\mathrm{log}\frac{\exp(r_{i,t}\cdot r_{i,t}^{\prime})}{\sum_{t^{\prime}\in\Omega}\left(\exp(r_{i,t}\cdot r_{i,t^{\prime}}^{\prime})+\mathbb{1}_{[t\neq t^{\prime}]}\exp(r_{i,t}\cdot r_{i,t^{\prime}})\right)} \tag{1}
+\ell_{inst}^{(i,t)}=-\log\frac{\exp(r_{i,t}\cdot r_{i,t}^{\prime})}{\sum_{j=1}^B\left(\exp(r_{i,t}\cdot r_{j,t}^{\prime})+1_{[i\neq j]}\exp(r_{i,t}\cdot r_{j,t})\right)} \tag{2}
 $$
 
 
