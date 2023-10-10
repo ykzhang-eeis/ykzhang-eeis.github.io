@@ -63,7 +63,7 @@
 
 **时间维度的对比损失函数**：将来自输入时间序列两个视图的相同时间戳的表示视为正例，而来自相同时间序列不同时间戳的表示视为负例，$i$是输入的时间序列的索引，$t$是时间戳，$r_{i,t}$ 和$r_{i,t}^{\prime}$是来自$x_i$的两种不同增强的相同时间戳$t$的表示，时间维度的损失函数可以表示为
 $$
-\ell{temp}^{(i,t)}=-\mathrm{log}\frac{\exp(r{i,t}\cdot r{i,t}^{\prime})}{\sum{t^{\prime}\in\Omega}\left(\exp(r{i,t}\cdot r{i,t^{\prime}}^{\prime})+\mathbb{1}{[t\neq t^{\prime}]}\exp(r{i,t}\cdot r_{i,t^{\prime}})\right)} \tag{1}
+\ell_{temp}^{(i,t)}=-\log\frac{\exp(r_{i,t}\cdot r_{i,t}^{\prime})}{\sum_{t^{\prime}\in\Omega}\left(\exp(r_{i,t}\cdot r_{i,t^{\prime}}^{\prime})+1_{[t\neq t^{\prime}]}\exp(r_{i,t}\cdot r_{i,t^{\prime}})\right)}
 $$
 
 
@@ -76,10 +76,8 @@ $$
 
 **总体的对比损失函数**：
 $$
-\mathcal{L}{dual}=\frac1{NT}\sum_i\sum_t\left(\ell{temp}^{(i,t)}+\ell_{inst}^{(i,t)}\right)
+\mathcal{L}_{dual}=\frac1{NT}\sum_i\sum_t\left(\ell_{temp}^{(i,t)}+\ell_{inst}^{(i,t)}\right)
 $$
-
-
 
 # 参考文献
 
