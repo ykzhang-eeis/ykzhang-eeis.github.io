@@ -75,6 +75,13 @@ $$
 $$
 \mathcal{L}_{dual}=\frac1{NT}\sum_i\sum_t\left(\ell_{temp}^{(i,t)}+\ell_{inst}^{(i,t)}\right)
 $$
+为什么不识别为$latex$公式呢
+
+试试一个行间公式
+$$
+jiuzaizenmemeili yeshicengjing
+$$
+
 
 # 参考文献
 
