@@ -73,7 +73,7 @@ $$
 **实例级的对比损失函数**：$i$是输入的时间序列的索引，$t$是时间戳，实例级的损失函数可以表示为
 
 $$
-abcd
+\ell_{inst}^{(i,t)}=-\log\frac{\exp(r_{i,t}\cdot r_{i,t}^{\prime})}{\sum_{j=1}^B\left(\exp(r_{i,t}\cdot r_{j,t}^{\prime})+1_{[i\neq j]}\exp(r_{i,t}\cdot r_{j,t})\right)} \tag{2}
 $$
 
 **总体的对比损失函数**：
