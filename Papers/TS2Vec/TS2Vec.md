@@ -76,7 +76,7 @@ $$
 
 **总体的对比损失函数**：
 $$
-\mathcal{L}_{dual}=\frac1{NT}\sum_i\sum_t\left(\ell_{temp}^{(i,t)}+\ell_{inst}^{(i,t)}\right)
+\mathcal{L}_ {dual}=\frac1{NT}\sum_ i\sum_ t\left(\ell_ {temp}^{(i,t)}+\ell_{inst}^{(i,t)}\right)
 $$
 
 # 参考文献
