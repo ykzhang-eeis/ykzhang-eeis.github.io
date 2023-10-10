@@ -78,6 +78,12 @@ $$
 \mathcal{L}_{dual}=\frac1{NT}\sum_i\sum_t\left(\ell_{temp}^{(i,t)}+\ell_{inst}^{(i,t)}\right) \tag{3}
 $$
 
+$$
+\ell_{inst}^{(i,t)}=-\log\frac{\exp(r_{i,t}\cdot r_{i,t}^{\prime})}{\sum_{j=1}^B\left(\exp(r_{i,t}\cdot r_{j,t}^{\prime})+1_{[i\neq j]}\exp(r_{i,t}\cdot r_{j,t})\right)} \tag{2}
+$$
+
+
+
 # 参考文献
 
 [^1]: Tonekaboni, S.; Eytan, D.; and Goldenberg, A. 2021. Unsupervised Representation Learning for Time Series with Temporal Neighborhood Coding. In International Conference on Learning Representations.
