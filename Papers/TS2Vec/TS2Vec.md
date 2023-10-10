@@ -62,16 +62,20 @@
 为了得到更好的时序上下文表示，本文同时利用了**实例级别**（instance-wise）和**时间维度**（temporal dimensions）的对比损失来编码时间序列分布，融合后的损失函数应用于层次对比模型中的所有粒度级别
 
 **时间维度的对比损失函数**：将来自输入时间序列两个视图的相同时间戳的表示视为正例，而来自相同时间序列不同时间戳的表示视为负例，$i$是输入的时间序列的索引，$t$是时间戳， $r_{i,t}$ 和$r_{i,t}^{\prime}$ 是来自 $x_i$的两种不同增强的相同时间戳 $t$的表示，时间维度的损失函数可以表示为
+$$
+\ell_{temp}^{(i,t)}=-\mathrm{log}\frac{\exp(r_{i,t}\cdot r_{i,t}^{\prime})}{\sum_{t^{\prime}\in\Omega}\left(\exp(r_{i,t}\cdot r_{i,t^{\prime}}^{\prime})+\mathbb{1}_{[t\neq t^{\prime}]}\exp(r_{i,t}\cdot r_{i,t^{\prime}})\right)} \tag{1}
+$$
+
 
 其中$\Omega$是两个子序列重叠的时间戳集合，$\mathbb{1}$是指示函数（indicator function），"Indicator function"（指示函数）通常用来表示一个条件是否成立。它是一个数学函数，通常用符号 1{condition}表示，其中"condition"是一个陈述性条件。当条件成立时，指示函数返回 1；否则，返回 0。
 
 **实例级的对比损失函数**：$i$是输入的时间序列的索引，$t$是时间戳，实例级的损失函数可以表示为
 $$
-\ell_{inst}^{(i,t)}=-\log\frac{\exp(r_{i,t}\cdot r_{i,t}^{\prime})}{\sum_{j=1}^B\left(\exp(r_{i,t}\cdot r_{j,t}^{\prime})+1_{[i\neq j]}\exp(r_{i,t}\cdot r_{j,t})\right)}
+\ell_{inst}^{(i,t)}=-\log\frac{\exp(r_{i,t}\cdot r_{i,t}^{\prime})}{\sum_{j=1}^B\left(\exp(r_{i,t}\cdot r_{j,t}^{\prime})+1_{[i\neq j]}\exp(r_{i,t}\cdot r_{j,t})\right)} \tag{2}
 $$
 **总体的对比损失函数**：
 $$
-\mathcal{L}_{dual}=\frac1{NT}\sum_i\sum_t\left(\ell_{temp}^{(i,t)}+\ell_{inst}^{(i,t)}\right)
+\mathcal{L}_{dual}=\frac1{NT}\sum_i\sum_t\left(\ell_{temp}^{(i,t)}+\ell_{inst}^{(i,t)}\right) \tag{3}
 $$
 
 # 参考文献
