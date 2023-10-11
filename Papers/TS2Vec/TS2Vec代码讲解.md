@@ -99,7 +99,7 @@ device = init_dl_program(args.gpu, seed=args.seed, max_threads=args.max_threads)
 
 根据args.irregular的值选择正则化比例（只能在classification任务中修改args.irregular值，否则会报错），这属于原论文中的缺失值分类性能实验
 
-![img](D:/Github_local_repo/ykzhang-eeis.github.io/images/-16970174308311.png)
+![img](../../images/-16970175652443.png)
 
 将batch_size, lr, output_dims, max_train_length等参数以字典形式写入config变量
 
