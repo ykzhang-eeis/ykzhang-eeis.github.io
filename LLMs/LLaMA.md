@@ -1,6 +1,7 @@
 # LLaMA
 
-- ![image-20231013114047639](C:\Users\zyk\AppData\Roaming\Typora\typora-user-images\image-20231013114047639.png)
+![image-20231013114047639](../images/image-20231013114047639.png)
+
 - @dataclass 作Decorator 的作用
 
 ```python
@@ -26,7 +27,7 @@ class ModelArgs(nn.Module):
 - RMSNorm的公式如下
 
 $$
-\bar{a}_i=\frac{a_i}{\mathbf{RMS}(\mathbf{a})}g_i,\quad\text{where RMS}(\mathbf{a})=\sqrt{\frac{1}{n}\sum_{i=1}^na_i^2}
+\bar{a}_ i=\frac{a_ i}{\mathbf{RMS}(\mathbf{a})}g_ i,\quad\text{where RMS}(\mathbf{a})=\sqrt{\frac{1}{n}\sum_ {i=1}^na_ i^2}
 $$
 
 ```python
@@ -49,7 +50,7 @@ class RMSNorm(nn.Module):
 
 - Grouped Multi-Query Self-Attention模块（添加了KVCache）
 
-![image-20231013104931749](C:\Users\zyk\AppData\Roaming\Typora\typora-user-images\image-20231013104931749.png)
+![image-20231013104931749](../images/image-20231013104931749.png)
 
 ```python
 # 首先要明白ModelArgs中的几个参数含义
@@ -129,9 +130,9 @@ class SelfAttention(nn.Module):
 - FeedForward模块使用的Activation Function是SwiGLU
 
 $$
-Vanilla\;FFN:\;w_{2}*ReLU(w_{1}x+b_{1})+b_{2}\\
+Vanilla\;FFN:\;w_ {2}*ReLU(w_ {1}x+b_ {1})+b_ {2}\\
 swish(x) = x*sigmoid(\beta*x),\; if\;\beta=1,\,swish()\;equal\; to\; SiLU()\\
-Transformer\;FFN\;(using\;SwiGLU):\;(matmul(swish(w_{1}*x),V*x))*w_{2}
+Transformer\;FFN\;(using\;SwiGLU):\;(matmul(swish(w_ {1}*x),V*x))*w_ {2}
 $$
 
 ```python
