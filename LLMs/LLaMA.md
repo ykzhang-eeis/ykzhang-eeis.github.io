@@ -135,7 +135,7 @@ $$
 $$
 
 $$
-swish(x) = x*sigmoid(\beta*x),\ if\ \beta=1,\,swish()\;\text{equal\ to}\ SiLU()
+swish(x) = x * sigmoid(\beta * x),\ if\ \beta=1,\,swish()\;\text{equal\ to}\ SiLU()
 $$
 
 $$
