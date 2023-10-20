@@ -27,7 +27,9 @@ class ModelArgs(nn.Module):
 - RMSNorm的公式如下
 
 $$
+\begin{aligned}
 \bar{a}_ i=\frac{a_ i}{\mathbf{RMS}(\mathbf{a})}g_ i,\quad\text{where RMS}(\mathbf{a})=\sqrt{\frac{1}{n}\sum_ {i=1}^na_ i^2}
+\end{aligned}
 $$
 
 ```python
