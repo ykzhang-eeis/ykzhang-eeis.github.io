@@ -135,11 +135,11 @@ $$
 $$
 
 $$
-swish(x) = x * sigmoid(\beta * x),\ if\ \beta=1,\,swish()\;\text{equal\ to}\ SiLU()
+swish(x) = x * sigmoid(\beta * x),\ if\ \beta=1,\,swish()\ \text{equal\ to}\ SiLU()
 $$
 
 $$
-\text{Transformer\ FFN\ (using\;SwiGLU):}\ w_{2}*(matmul(swish(w_{1}*x),V*x))
+\text{Transformer\ FFN\ (using\ SwiGLU):}\ w_{2}*(matmul(swish(w_{1} * x),V * x))
 $$
 
 ```python
