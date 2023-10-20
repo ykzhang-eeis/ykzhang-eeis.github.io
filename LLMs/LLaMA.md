@@ -131,8 +131,14 @@ class SelfAttention(nn.Module):
 - FeedForward模块使用的Activation Function是SwiGLU
 
 $$
-\text{Vanilla\ FFN:}\ w_{2}*ReLU(w_{1}x+b_{1})+b_{2}\\
-swish(x) = x*sigmoid(\beta*x),\ if\ \beta=1,\,swish()\;\text{equal\ to}\ SiLU()\\
+\text{Vanilla\ FFN:}\ w_{2}*ReLU(w_{1}x+b_{1})+b_{2}
+$$
+
+$$
+swish(x) = x*sigmoid(\beta*x),\ if\ \beta=1,\,swish()\;\text{equal\ to}\ SiLU()
+$$
+
+$$
 \text{Transformer\ FFN\ (using\;SwiGLU):}\ w_{2}*(matmul(swish(w_{1}*x),V*x))
 $$
 
